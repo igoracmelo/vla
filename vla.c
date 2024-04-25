@@ -45,6 +45,12 @@ bool _vla_grow_cap(struct vla *vla, size_t cap)
     return true;
 }
 
+bool vla_grow_cap(struct vla *vla, size_t cap)
+{
+    cap *= vla->_data_size;// TODO: check for overflow
+    return _vla_grow_cap(vla, cap);
+}
+
 void *vla_get(struct vla *vla, size_t i)
 {
     size_t idx = i * vla->_data_size; // TODO: check for overflow

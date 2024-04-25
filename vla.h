@@ -16,6 +16,8 @@ size_t vla_len(struct vla *vla);
 
 size_t vla_cap(struct vla *vla);
 
+bool vla_grow_cap(struct vla *vla, size_t cap);
+
 void *vla_get(struct vla *vla, size_t i);
 
 bool vla_push(struct vla *vla, void *item);
