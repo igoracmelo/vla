@@ -58,6 +58,11 @@ void *vla_get(struct vla *vla, size_t i)
 bool vla_push(struct vla *vla, void *item)
 {
     size_t need_cap = vla->_len + vla->_data_size;
+
+    // overflowed
+    if (need_cap < vla->_len)
+        return false;
+
     if (need_cap > vla->_cap)
     {
         bool ok = _vla_grow_cap(vla, vla->_cap*2); // TODO check for overflow
